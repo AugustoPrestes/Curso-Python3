@@ -258,13 +258,40 @@ Aula 5 - Colecoes em Python.
                 lista_num.pop()
             clear() -> Limpa todos os dados da lista de uma so vez. 
                 lista_num.clear()
-            split() -> Transforma String em uma lista, e por padrao separa os elementos considerando o espaco entre elas
+            split() -> Transforma String em uma lista, e por padrao separa os elementos considerando o espaco entre eles. Porem e possivel informal qual sera o parametro para a separacao dos elementos.
                 nome = 'Augusto Ribiro Prestes da Silva'
                 nome = nome.split()
-            
+            join() -> Transforma Uma lista em String. Informando se algo ficara entre cada elemento, para separar os elementos da lista dentro da string.
+                nome = ['Augusto', 'Ribiro', 'Prestes', 'da', 'Silva']
+                nome_string = ' '.join(nome)
+            index() -> Informa o indice do valor que foi passado no parametro da funcao. Caso possua mais de um elemento com o mesmo valor, o index retorna o primeiro valor encontrado. E tambem e possivel buscar os indices em um
+                print(lista_num.indes(valor_a_ser_procurado))
+                print(lista_num.indes(valor_a_ser_procurado, indice_de_inicio, indice_de_parada)) # Busca em um range
+
+        Operadores para manipular dados em listas. Para utilizar esses operadores, e necessario que a lista tenha apeas um tipo de dado, sendo eles, float ou int:
+            sum -> Soma dos valores dentro da lista.
+            max -> Valor maximo que a lista possui.
+            min -> Valor minimo que a lista possui.
+            len -> Quantidade de elementos que a lista possui.
+
+        Desempacotamento de listas. E possivel fazer com quem os valores da lista sejam passados para variaveis externas, porem so e passado um valor para cada variavel, sendo assim, precisa ter a mesma quantidade de variaveis para a quantidade de elementos na lista
+            lista = [1, 2, 3]
+            num1, num2, num3 = lista1
+        
+        Tipos de copia de Lista
+            Shallow Copy -> E quando uma lista recebe o valor copiado de outra lista, porem elas criam uma coneccao e sempre teram o mesmo valor.
+                lista = [1, 2, 3]
+                nova = lista
+                nova.append(34) # A partir desse momento ambas as listas teram o mesmo valor.
+            Deep Copy -> E quando uma lista recebe o valor copiado de outra lista, porem ambas permanecem independentes uma da outra.
+                lista = [1, 2, 3]
+                nova = lista.copy()
 """
 nome = ''
-lista_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 31, 43, 65, 12]
-print(lista_num)
-lista_num.clear()
-print(lista_num)
+lista = [1, 2, 3]
+num1, num2, num3 = lista
+
+print(num1)
+print(num2)
+print(num3)
+print(lista)
