@@ -114,6 +114,7 @@ Aula 2 Variaveis e tipo de dados.
         Aspas Simples Triplas -> ''' '''
         Aspas duplas Triplas -> """ """
 
+from collections import Counter
     # E utilizado na programacao o \n para pular a linha 
         Exemplo:
             print(f'meu nome e Augusto \n tenho 22 anos')
@@ -226,9 +227,15 @@ Aula 4 - Estrutura de repeticao
 """
 Obs: As Lista em python funcionam com array ou vetores. Com a diferenca de serem dinamicos e possamos incluir qualquer tipo de dados em um so array
 Obs: Tambem e possivel juntar a listas, utilizando o sinal de mais criando uma nova lista, ou adicionando uma lista a outra com o extend()
+Obs: A representacao inicial de uma tupla precisa ser feita com mais de um numero, para que o Python reconheca que, o mesmo e uma tupla, e nao e necessario representar de inicio os valores dentro de um parenteses, o Python fara isso automaticamente 
+Obs: Todas as funcoes de manipulacao de lista nao funcionam em tuplas, devido sua caracteristica de ser imutavel.
+Obs: E possivel concatenar Tuplas.
+Obs: os Dicionarios nao sao indexados, o acesso e feito pelo valor da chave, ou o valor do conteudo
+Obs: E interresante utilizar tuplas, como chaves de um dict, e as chaves NAO podem ser repetidas
+Obs: O COunter te a ordenacao do counter e baseada na quantidade do iterado, de forma decrescente.
 
 Aula 5 - Colecoes em Python.
-    # Modulo - Listas.
+    # Modulo - Listas - list.
         Lista -> E considerado dinamico por nao possuir limite de tamanho, o limite e a penas a memoria do computador. nao exites destincao dos dados ao inserilos na lista
             Exemplos de Listas:
                 lista_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 31, 43, 65, 12]
@@ -286,12 +293,101 @@ Aula 5 - Colecoes em Python.
             Deep Copy -> E quando uma lista recebe o valor copiado de outra lista, porem ambas permanecem independentes uma da outra.
                 lista = [1, 2, 3]
                 nova = lista.copy()
-"""
-nome = ''
-lista = [1, 2, 3]
-num1, num2, num3 = lista
 
-print(num1)
-print(num2)
-print(num3)
-print(lista)
+    # Modulo - Tuplas - tuple
+        Tuple -> As Tuplas sao parecisas com as listas, e sua definicao e baseada na virgula e nao no parentese, as tuplas aceitam tipos diferentes de dados assim como as listas, Devemos utilizar as tuplas para colecoes que nao precisarame ter seus dados alterados suas diferencas sao:
+            Exemplos:
+                tupla1 = (1, 2, 3)
+                tupla2 = 1, 2, 3
+                tupla3 = 1,
+
+            Primeira -> A representacao, pois em tuplas utilizamos parenteses;
+            Segunda -> As tuplas sao imutaveis, isso quer dizer que ao criar uma tuplas seu valor nao ira sofrer alteracao, e qualquer tentativa de alteracao, ira criar uma nova tupla.
+
+    # Modulo - Dicionarios - dict
+        Dicionario -> Os dicionarios sao colecoes do tipo chave e valor, porem as chaves ficam explicitas no codigo e na hora de representalas separando a chave do valor utilizando dois pontos, ambas podem ser de qualquer tipo de dados e sao representados por chaves {} 
+            Exemplos:
+                paises = {'br': 'Brasil', 'eua': 'Estados Unidos'}
+                paises = dict(br='Brasil', eua='Estados Unidos')
+            
+            Funcoes exclusivas em dict:
+                values() -> Imprime apenas os valores do dict;
+                clear() -> Limpar dados dentro do dict;
+                copy() -> Copia os valores do dict, para outro local;   
+                fromkeys() -> Cria um novo dict, passando como primeiro parametro umm iteravel a chave e como segundo parametro o valor para cada chave informada;
+                keys() -> Imprime apenas as chaves de cada valor do dict;
+                get() -> Seleciona e determinado valor da lista, pela chave que e passada no paramentro da funcao, e possivel passar um valor default, caso o valor informado nao seja encontrado;
+                update() -> inseri um novo valor ao dict de uma variavel externa, que tenha valores compativeis com os parametros de 'key' = 'valor';             
+
+            Para acessar os dados dentro de um dicionario, existem duas maneiras:
+                Utilizando a chave do valor -> print(paises['br'])
+                Utilizando a funcao get() -> print(paises.get('br'))  # A funcao get(), pode ser utilizada tbm para confirmar a existencia de um dado dentro do dict, pois caso o valor nao seja encontrado pela chave passada, sera retornado o valor none, e nao ocorrera um erro caso utilizemos a forma de busca a cima.
+
+            Formas de inserir dados ou atualizalos em um dict:
+                Exemplos:
+                    Primeira forma-> Utilizando o proprio parametro de key do dict, informando o nome da nova key e o valor que ela vai receber;
+                        receita['abr'] = 300.
+                    Segunda forma -> Criando uma variavel que recebe um ou mais valores de um dict, e inserindo esses valores da variavel utilizando a funcao update(), OU apenas inserir os dados diretamente pelo update();
+                        novo_dado = {'mai': 500}
+                        receita.update(novo_dado)  #Com isso o dict de receita recebera o novo valor.
+                        receita.update({'mai': 500})  #Outra forma de inserir dados com o update().
+
+    # Modulo - Conjuntos - sets:
+        sets -> Os conjuntos em Pytho estao fazendo referencia aos conjuntos da matematica.
+            -> Nao podem ser duplicados;
+            -> Nao podem ser ordenados;
+            -> Nao podem ser acessados via indice;
+
+        Diferenca entre Dicionarios e Conjuntos:
+            -> Dicionario possui chave/valor;
+            -> COnjunto possui apenas valor;
+
+    # Modulo - Collections - Counter
+        counter -> E necessario importa o counter de collection, é uma funcao utilizada para contar quantas vezes um valor se repete dentro de uma lista, pois recebe um interavel como parametro e cria um objeto contando quantas vezes cada valor dentro do interavel se repete.
+            Exemplo:
+                lista = [1, 1, 3, 5, 6, 7, 2, 2, 3, 4, 5, 6, 7, 8, 9, 12, 31, 43, 65, 12]
+                res = Conter(lista)  # O retorno sera um objeto contendo a quantidade de vezes que cada elemento dentro da lista se repete.
+
+            Funcoes utilizadas em Counter:
+                 most_common() -> seloeciona os elementos em maior quantidade, e dentro do parametro informamos, quantos elementos deveram aparecer
+                    Exemplo: 
+                        from collections import Counter
+                        texto = "Augusto Prestes"
+                        palavras = list(texto)
+                        res = Counter(palavras)
+                        print(res)
+                        print(res.most_common(10))
+        
+    # Modulo - Collections - Default Dict
+        defaultdict -> Ao criar um dicionario utilizando a funcao defaultdict sempre que inserirmos uma nova chave sem valor, ou buscar-mos um valor e passar-mos uma chave que nao existe no dicionario, a funcao ira inclui-lo no automaticamente com o valor default informado.
+            Exemplo:
+                from collections import defaultdict
+                dicionario = defeultdict(lambda: 0)
+                dicionario['nome'] = 'Augusto'  # Incluindo um elemento de uma forma ja vista antes
+                print(dicionario['outro'])  # Dessa forma pelo fato de que nao possui nenhuma chave que corresponde com 'outro', automaticamento o defeultdict ira inseri-lo a lista
+                
+    # Modulo - Collection - Ordered Dict
+        ordereddict -> E uma ferramenta para ordenar um dicionario existente, porem aparentemente a funcao nao ordena de acordo com as chaves atuais, ou pelos valores ja inseridos, olhando rapidamente a documentacao e utilizado o OrderedDict, para criar uma propria maneira de ordenar a insersao de dados no dicionario
+            exeplo do curso, porem nao funcionou como esperado:
+                from collections import OrderedDict
+                dicionario = OrderedDict({'a': 2, 'c': 1, 'b': 1, 'x': 0})
+                for chave, valor in dicionario.items():
+                    print(f'Chave {chave} e Valor {valor}')
+                print(dicionario)
+    
+    # Modulo - Collection - Named Tuple
+        NamedTuple -> As tuplas nomeadas atribuem significado a cada posição em uma tupla e permitem um código mais legível e autodocumentado. Eles podem ser usados ​​sempre que tuplas regulares são usadas e adicionam a capacidade de acessar campos por nome em vez de índice de posição.
+            Exemplo:
+                from collections import namedtuple
+                produto = namedtuple('Produto', ['nome', 'valor', 'tipo'])
+                carrinho = produto(nome='playstation', valor=10000, tipo='eletronico')  # Assim Criamos o nosso tipo de dado chamado produto,
+    # Modulo - COllection - Deque
+        Deque -> E uma lista de alta performance, tem a mesma funcao do namedtuple na criacao da lista.
+
+"""
+
+from collections import namedtuple
+produto = namedtuple('Produto', ['nome', 'valor', 'tipo'])
+carrinho = produto(nome='playstation', valor=10000, tipo='eletronico')  # Assim Criamos o nosso tipo de dado chamado produto
+
+print(carrinho.valor)
