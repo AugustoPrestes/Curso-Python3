@@ -170,3 +170,101 @@ Aula 3 - Estruturas logicas e condicionais:
                     print(x is y)
 
 """
+#######################################################################################
+"""
+OBs: Utilizamos loops para iterar sobre sequencias ou valores iteraveis.
+    Exemplo:
+    - String -> nome = 'Augusto'
+    - Lista -> cont = [1, 2, 3, 4]
+    - range -> numeros = range(1, 100)
+    
+    # Nesse exemplo utilizamos o "Letra para separar o interavel", Podemos tamber utilizar o underline, quando nao queremos utilizar um "valor" como o indice nesse exemplo: 
+        for indice, letra in enumerate(nome):
+            print(letra)
+        for _, letra in enumerate(nome):
+            print(letra)
+
+Obs: E necessario colocar um breack poin dentro do while para que nao gere um loop infinito
+
+
+Aula 4 - Estrutura de repeticao
+    # Modulo - Loop for.
+        Exemplos de for:
+            # Exemplo com String
+            for letra in nome:
+                print(f'letra do nome: {letra}')
+
+            # Exemplo com Range()
+            for numero in numeros:
+                if numero == 50:
+                    print(numero, ':Metade da conta')
+                else:
+                    print(numero)
+                
+            # Exemplo Com Lista 
+            for numero in lista:
+                if numero == 50:
+                    print(numero, ':Metade da conta')
+                else:
+                    print(numero)   
+
+        Loop e uma estrutura de repeticao.
+            for - > Corresponde ao para, no sentido de iteravel
+
+    # Modulo  - Range(). O range e uma funcao que auxilia a contrucao das estruturas de repeticao, com o range podes informar quantas vezes queremos que o codigo rode. 
+        Exemplo: 
+            range(valor_de_inicio, valor_de_parada, contador)
+
+    # Modulo - Loop While.
+        while -> O While corresponde a, enquanto e serve para que possamos iterar sobre sequencias, de forma booleana, considerando que enquanto a condicao for verdadeira o codigo continuara sendo executado.
+
+    # Modulo - Saindo de loops com break. 
+        break -> E utilizado para sair de um loop de maneira projetada
+
+"""
+#######################################################################################
+"""
+Obs: As Lista em python funcionam com array ou vetores. Com a diferenca de serem dinamicos e possamos incluir qualquer tipo de dados em um so array
+Obs: Tambem e possivel juntar a listas, utilizando o sinal de mais criando uma nova lista, ou adicionando uma lista a outra com o extend()
+
+Aula 5 - Colecoes em Python.
+    # Modulo - Listas.
+        Lista -> E considerado dinamico por nao possuir limite de tamanho, o limite e a penas a memoria do computador. nao exites destincao dos dados ao inserilos na lista
+            Exemplos de Listas:
+                lista_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 31, 43, 65, 12]
+                lista_str = ['Augusto', ' ', 'Ribeiro']
+                lista_vaz = []
+                lista_range = list(range(11))
+                lista_str2 = list('Augusto Ribeiro')
+
+        Funcoes para manipular as listas:
+            sort() -> Funcao utilizada para ordenar a lista, normalmente urilizada para tratar numeros. Porem tbm e possivel utiliza-las com Strings.
+                lista_num.sort()
+            cont() -> Conta quantas vezes um determinado valor se repete dentro da lista.
+                print(lista_num.count(valor_a_ser_contado))   
+            append() -> Adiciona novo elemento a lista, Porem so e possivel adicionar um elemento por vez. Novo valor sempre sera mandado para o final da fila
+                lista_num.append(1)
+            extend() -> Adiciona novos elementos a lista, Porem nao possui limite de valores como o append e so aceita a insersao de mais de um valor por vez. Novo valor sempre sera mandado para o final da fila
+                lista_num.extend([1, 2, 4, 5, 6, 00, 1, 3, 6])  
+            insert() -> Adiciona um novo elemento a lista, Porem e possivel escolher o indice desse novo valor. E nao sera removido o valor anterior na possicao desejada
+                lista_num.insert(index_da_lista, valor_a_ser_inserido)
+            reverse() -> Invert a ordem da lista 
+                lista_num.reverse()
+            copy() -> Como o nome diz ele copia o valor da lista para outro lugar ou outra lista 
+                lista_num = lista_test.copy()
+            len() -> Len de length comprimento, para que possamos ver qual o tamanho total da lista, baseado na quantidade de elementos dentro da mesma.
+                print(len(lista_num))
+            pop() -> Deleta o ultimo valor inserido na lista, por padrao, porem e possivel escolher qual valor sera deletado informando o seu indice como paramentro.
+                lista_num.pop()
+            clear() -> Limpa todos os dados da lista de uma so vez. 
+                lista_num.clear()
+            split() -> Transforma String em uma lista, e por padrao separa os elementos considerando o espaco entre elas
+                nome = 'Augusto Ribiro Prestes da Silva'
+                nome = nome.split()
+            
+"""
+nome = ''
+lista_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 31, 43, 65, 12]
+print(lista_num)
+lista_num.clear()
+print(lista_num)
