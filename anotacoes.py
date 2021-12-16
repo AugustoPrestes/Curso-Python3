@@ -63,6 +63,7 @@ print(f'O {nome} Ribeiro Prestes da Silva Tem {idade} anos! E Nasceu no ano de {
 Obs: O underline pode ser utilizado para separar as centenas
     Exemplo: 1_000_000_000
 
+Obs: Caso uma variavel global tenha o mesmo nome de uma local, a variavel local tera preferencia dentro do bloco aonde ela foi criada. Porem podemos utilizar a variavel global, informando dentro do bloco (global nome_da_variavel_global), nao sera criado uma nova variavel.
 Obs: Pelo fato do Python ser uma linguagem de tipagem dinamica, nao precisamos colocar o tipo da variavel ao declara-la. O tipo e declarado ao atribuirmos o valor a variavel.
 
 Aula 2 Variaveis e tipo de dados.
@@ -383,11 +384,94 @@ Aula 5 - Colecoes em Python.
                 carrinho = produto(nome='playstation', valor=10000, tipo='eletronico')  # Assim Criamos o nosso tipo de dado chamado produto,
     # Modulo - COllection - Deque
         Deque -> E uma lista de alta performance, tem a mesma funcao do namedtuple na criacao da lista.
+            Deque possui uma funcao chamada appendleft(), inseri o novo dado no inicio da lista/deque;
+            Deque possui uma funcao chamada popleft(), remove o primeiro elemento da lista/deque;
 
 """
+#######################################################################################
+"""
+Obs: Sempre crie funcoes de forma mais simples possiveis, facilitando a manutencao do codigo e a melhorando o desempenho do mesmo;
+Obs: Toda funcao que ja e vem da linguagem e chama de built-in;
+Obs: Parametros sao variaveis declaradas na definicao da funcao, ja argumentos sao dados passados durante a execucao da funcao;
 
-from collections import namedtuple
-produto = namedtuple('Produto', ['nome', 'valor', 'tipo'])
-carrinho = produto(nome='playstation', valor=10000, tipo='eletronico')  # Assim Criamos o nosso tipo de dado chamado produto
+Aula 6 - Funcoes em Python:
 
-print(carrinho.valor)
+    # Modulo - Definindo funoes:
+        Definicao de funcoes -> Funcoes sao pequenos trechos de codigos que realizam tarefas especificas. Pode ou nao receber ou retornar dados. Sao uteis para executar procedimentos que se repetem ao longo do codigo.
+        Exemplo: -> na definicao de funcao por padrao devemos utilizar o methodo Snake case, e a funcao deve ser com letras minusculas. Parametros de entrada sao opcionais, e sempre separar por virgula caso contenha mais de um.
+            def nome_da_funcao(parametros_de_entrada):
+                    bloco_da_funcao
+
+    # Moduolo - Funcoes com Retorno:
+        Retorno de funcao ->
+            return -> A palavra reservada return que garante um retorno de dados para a noca funcao. E ela tambem sai da funcao.
+
+    # Modulo - Funcoes com Parametros:
+        Parametros de funcao -> Sao funcoes que recebem dados para ser processados dentro da propria funcao, 
+        
+    # Modulo - Funcoes com parametro padrao:
+        Parametro padrao -> Sao funcoes que informar o parametro e opcional. Caso a funcao tenha a penas um valor default, ele deve estar ao final da declaracao!
+            Exemplo:
+            def func_raiz(numero, raiz=2):
+                return numero ** raiz
+
+"""
+# Refatorando funcao de raiz quadrada
+
+
+def func_raiz(numero, raiz=2):
+    return numero ** raiz
+
+
+# Funcao de exponencial:
+def func_potencia(numero, expoente=10):
+    return numero ** expoente
+
+# A baixo funcoes para calculadora
+
+
+def soma():
+    a = float(input("Primeiro numero: "))
+    b = float(input("Segundo numero: "))
+    print("Resultado soma: ", a + b)
+
+
+def divisao(a):
+    a = float(input("Primeiro numero: "))
+    b = float(input("Segundo numero: "))
+    print("Resultado divisão: ", a % b)
+
+
+def subtracao():
+    a = float(input("Primeiro numero: "))
+    b = float(input("Segundo numero: "))
+    print("Resultado subtração: ", a - b)
+
+
+def multiplicacao():
+    a = float(input("Primeiro numero: "))
+    b = float(input("Segundo numero: "))
+    print("Resultado multiplicação: ", a * b)
+
+
+opcao = 1
+
+while opcao:
+    print("\n####################")
+    print("# 0. Sair          #")
+    print("# 1. Somar         #")
+    print("# 2. Subtrair      #")
+    print("# 3. Multiplicação #")
+    print("# 4. Divisão       #")
+    print("####################")
+
+    opcao = int(input("Opção: "))
+
+    if(opcao == 1):
+        soma()
+    if(opcao == 2):
+        subtracao()
+    if(opcao == 3):
+        multiplicacao()
+    if(opcao == 4):
+        divisao()
