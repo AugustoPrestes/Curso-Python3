@@ -4,6 +4,7 @@ from random import random
 
 
 def joga_moeda():
+    """ Funcao que determina , cara ou coroa. se o valor gerado aleatoriamento for maior que 0.5, a funcao retorna "cara", caso contrario, retorna "Coroa"  """
     if random() > 0.4999:
         return 'Cara'
     return 'Coroa'
@@ -43,36 +44,37 @@ if opcao == 'p':
 
 
 # Funcao de raiz:
+# Funcao para saber qual e a raiz quadrada do mesmo, ou qualquer outra raiz.
 def func_raiz(numero, raiz=2):
     return numero ** raiz
 
 
 # Funcao de exponencial:
+# tetermina o valor da potencia do numero informado.
 def func_potencia(numero, expoente=10):
     return numero ** expoente
 
+
 # A baixo funcoes para calculadora
-
-
-def soma():
+def soma():  # Funcao que soma dois valores.
     a = float(input("Primeiro numero: "))
     b = float(input("Segundo numero: "))
     print("Resultado soma: ", a + b)
 
 
-def divisao(a):
+def divisao(a):  # Funcao que divide dois valores
     a = float(input("Primeiro numero: "))
     b = float(input("Segundo numero: "))
     print("Resultado divisão: ", a % b)
 
 
-def subtracao():
+def subtracao():  # Funcao que subtrai entre dois valores.
     a = float(input("Primeiro numero: "))
     b = float(input("Segundo numero: "))
     print("Resultado subtração: ", a - b)
 
 
-def multiplicacao():
+def multiplicacao():  # Funcao que multiplica doi valores.
     a = float(input("Primeiro numero: "))
     b = float(input("Segundo numero: "))
     print("Resultado multiplicação: ", a * b)

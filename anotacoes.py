@@ -393,6 +393,7 @@ Aula 5 - Colecoes em Python.
 Obs: Sempre crie funcoes de forma mais simples possiveis, facilitando a manutencao do codigo e a melhorando o desempenho do mesmo;
 Obs: Toda funcao que ja e vem da linguagem e chama de built-in;
 Obs: Parametros sao variaveis declaradas na definicao da funcao, ja argumentos sao dados passados durante a execucao da funcao;
+Obs: Caso a funcao que utiliza o *Args receba uma lista tuplua ou dict, e possivel desempacotar os valores contidos nelas utilizando o *no no inicio da variavel detro do parametro da funcao  
 
 Aula 6 - Funcoes em Python:
 
@@ -414,64 +415,18 @@ Aula 6 - Funcoes em Python:
             Exemplo:
             def func_raiz(numero, raiz=2):
                 return numero ** raiz
+    # Modulo - Docstrings 
+        Docstrings -> Sao Strings de Documentacao, modulo para reforcar a importancia de documentar partes importantes do codigo Utilizado Para Documentar funcoes.
+            Ela e executada com a funcao help, mostrando o que foi documentado dentro da funcao, para que possamos entender como a funcao criada funciona, formas de chamar a DocString:
+                Exemplo:
+                    help(funcao_criada());
+                    print(funcao_criada.__doc__)
+    # Modulo - *Args
+        *Args -> E um parametro de entrada de uma funcao, isso significa que podemos nomealo de qualquer coisa, porem e necessario que comece com *. O parametro *args coloca os valores extras em uma tupla. Pode ser usado para que nao precise-mos informar uma quantidade limitada de parametros para nossa funcao.
+
+
+
 
 """
-# Refatorando funcao de raiz quadrada
 
 
-def func_raiz(numero, raiz=2):
-    return numero ** raiz
-
-
-# Funcao de exponencial:
-def func_potencia(numero, expoente=10):
-    return numero ** expoente
-
-# A baixo funcoes para calculadora
-
-
-def soma():
-    a = float(input("Primeiro numero: "))
-    b = float(input("Segundo numero: "))
-    print("Resultado soma: ", a + b)
-
-
-def divisao(a):
-    a = float(input("Primeiro numero: "))
-    b = float(input("Segundo numero: "))
-    print("Resultado divisão: ", a % b)
-
-
-def subtracao():
-    a = float(input("Primeiro numero: "))
-    b = float(input("Segundo numero: "))
-    print("Resultado subtração: ", a - b)
-
-
-def multiplicacao():
-    a = float(input("Primeiro numero: "))
-    b = float(input("Segundo numero: "))
-    print("Resultado multiplicação: ", a * b)
-
-
-opcao = 1
-
-while opcao:
-    print("\n####################")
-    print("# 0. Sair          #")
-    print("# 1. Somar         #")
-    print("# 2. Subtrair      #")
-    print("# 3. Multiplicação #")
-    print("# 4. Divisão       #")
-    print("####################")
-
-    opcao = int(input("Opção: "))
-
-    if(opcao == 1):
-        soma()
-    if(opcao == 2):
-        subtracao()
-    if(opcao == 3):
-        multiplicacao()
-    if(opcao == 4):
-        divisao()
