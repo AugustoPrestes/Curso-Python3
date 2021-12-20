@@ -382,7 +382,7 @@ Aula 5 - Colecoes em Python.
                 from collections import namedtuple
                 produto = namedtuple('Produto', ['nome', 'valor', 'tipo'])
                 carrinho = produto(nome='playstation', valor=10000, tipo='eletronico')  # Assim Criamos o nosso tipo de dado chamado produto,
-    # Modulo - COllection - Deque
+    # Modulo - Collection - Deque
         Deque -> E uma lista de alta performance, tem a mesma funcao do namedtuple na criacao da lista.
             Deque possui uma funcao chamada appendleft(), inseri o novo dado no inicio da lista/deque;
             Deque possui uma funcao chamada popleft(), remove o primeiro elemento da lista/deque;
@@ -394,6 +394,8 @@ Obs: Sempre crie funcoes de forma mais simples possiveis, facilitando a manutenc
 Obs: Toda funcao que ja e vem da linguagem e chama de built-in;
 Obs: Parametros sao variaveis declaradas na definicao da funcao, ja argumentos sao dados passados durante a execucao da funcao;
 Obs: Caso a funcao que utiliza o *Args receba uma lista tuplua ou dict, e possivel desempacotar os valores contidos nelas utilizando o *no no inicio da variavel detro do parametro da funcao  
+Obs: Caso uma funcao necessite o uso de todos os tipos de parametro, devera seguir um padra: Parametros obrigatorio, *Args, Parametros default(nao obrigatorios) e **Kwargs.
+Obs: O duplo * e utilizado para desempacotar uma variavel dentro dos parametros da funcao. Porem os nomes das chaves tem que ser o mesmo que consta na funcao
 
 Aula 6 - Funcoes em Python:
 
@@ -424,9 +426,9 @@ Aula 6 - Funcoes em Python:
     # Modulo - *Args
         *Args -> E um parametro de entrada de uma funcao, isso significa que podemos nomealo de qualquer coisa, porem e necessario que comece com *. O parametro *args coloca os valores extras em uma tupla. Pode ser usado para que nao precise-mos informar uma quantidade limitada de parametros para nossa funcao.
 
-
-
-
+    # Modulo - Entendendo **Kwargs
+        E mais um parametro, porem ele exige que utilizemos parametros nomeados, e transforma os parametros extra em um dicioario. No caso Kwargs Sao argumentos que possuem chave de identificacao. 
+     
+    
 """
-
 
