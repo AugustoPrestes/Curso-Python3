@@ -59,6 +59,8 @@ print(f'O {nome} Ribeiro Prestes da Silva Tem {idade} anos! E Nasceu no ano de {
 
 """
 #######################################################################################
+import sys
+
 """ 
 Obs: O underline pode ser utilizado para separar as centenas
     Exemplo: 1_000_000_000
@@ -492,12 +494,13 @@ Aula 7 - Comprehensions em Python - Parte 1:
             numeros = {x: x ** 2 for x in range(10)}
             print(numeros)  
 """
-
-
+#######################################################################################
 """
 Obs: Para Remover o espaçamento antes e depois da string Caso seja inserido um espaço indevido, e necessário utilizar a função strip().
 Obs: Assim como a funcao map a funcao filter recebe dois parametros
-Obs: Os dados gerados na funcao map ou filter, so podem ser utilizados uma vez.
+Obs: Os dados gerados na funcao map, filter, reduce, any, all e generator, so podem ser utilizados uma vez.
+Obs: A Funcao sorted() possui parametros para reverter a ordem padrao (ascendente) e um parametro key, para personalizar
+a ordem de classificacao
 
 Aula 8 - Expressões Lambdas e Funções integradas:
 
@@ -564,12 +567,103 @@ Aula 8 - Expressões Lambdas e Funções integradas:
             print(res)
     # Modulo - Any e All:
         A funcao all() retorna True se todos os elementos do iteravel sâo verdadeiros ou ainda se o iteravel estiver vazio.
-        Exemplo :
-            print(all(num for num in [2, 4, 6, 8, 10] if num % 2 == 0)) #resultado sera True devido aos resultados serem Par
-            print(all(num for num in [2, 4, 6, 8, 10] if num % 2 == 1)) #resultado sera True devido aos resultados serem Impar e gerar uma lista vazia
+        Exemplo Utilizando list Compreesion:
+            print(all([num for num in [2, 4, 6, 8, 10] if num % 2 == 0])) #resultado sera True devido aos resultados serem Par
+            print(all([num for num in [2, 4, 6, 8, 10] if num % 2 == 1])) #resultado sera True devido aos resultados serem Impar e gerar uma lista vazia
+            
+        A funcao any() retorna True se qualquer elemento do iteravel for True, caso o iteravel estiver vazio retorna False
+        Exemplo Utilizando list Compreesion:
+            print(any([num for num in [2, 4, 6, 8, 10] if num % 2 == 0])) #resultado sera True devido que pelo menos 1 dos valores sera True
+            print(any([num for num in [2, 4, 6, 8, 10] if num % 2 == 1])) #resultado sera False devido que o iteravel retornara vazio
+            
+    # modulo - Generator Expression:
+        Os Generators sao parecidos com comprehensions porem utilizam os conchetes (), e o generator ao ser executado 
+        ocupa menos recurso da memoria do computador, por armazenor um objeto e nao uma lista completa como o list comprehension
+        Exemplo de iteravel em Generetor Expression:
+        gen = (x * 10 for x in range(1000))
+        print(gen)
+        
+        Utilizando a funcao getsizeof(), da biblioteca sys -> a funcao informao a quantidade de memoria que esta sendo
+        utilizada pelo PC:
+            # Gerando uma lista de numeros com list Comprehension:
+            list_comp = sys.getsizeof([x * 10 for x in range(1000)]) # Utilizados 8856 bytes
+            # Gerando uma lista de numeros com set Comprehension:
+            set_comp = sys.getsizeof({x * 10 for x in range(1000)}) # Utilizados 32984 bytes
+            # Gerando uma lista de numeros com Dictionary Comprehension:
+            dic_comp = sys.getsizeof({x: x * 10 for x in range(1000)}) # Utilizados 36960 bytes
+            # Gerando uma lista de numeros com Generator Expression :
+            gen = sys.getsizeof(x * 10 for x in range(1000)) # Utilizados 104 bytes
+            # Prints de demonstracao de ocupacao de memorias
+            print("PAra fazermos a mesma tarefa gastamos:")
+            print(f"list Comprehension: {list_comp} bytes")
+            print(f"set Comprehension: {set_comp} bytes")
+            print(f"Dictionary Comprehension: {dic_comp} bytes")
+            print(f"Generator Expression: {gen} bytes")
+    
+    # modulo - Sorted:
+        A funcao sorted() pode ser utilizada para ordenar qualquer tipo de iteravel, transformando em uma 
+        lista ja ordenado (utilizando em um dictionary sera ordenado pela chave do dicionario).
+        A diferenca da funcao sorted() para a sort() e que a funcao sort() altera a ordem daquela lista, e a sorted()
+        gera uma lista nova
+        Exemplo: 
+            numeros_list = [1, 2, 5, 1, 3, 9, 10, 6, 8]
+            numeros_tuple = (1, 2, 5, 1, 3, 9, 10, 6, 8)
+            numeros_set = {1, 2, 5, 1, 3, 9, 10, 6, 8}
+            numeros_dict = {"1": 1, "2": 2, "3": 5, "4": 1, "5": 3, "6": 9, "7": 10, "8": 6, "9": 8}
+            
+            print(f" lista crua: {numeros_list}")
+            print(f" lista apos o sorted(){sorted(numeros_list)}\n")
+            
+            print(f" tupla crua: {numeros_tuple}")
+            print(f" tupla apos o sorted: {sorted(numeros_tuple)}\n")
+            
+            print(f" set crua: {numeros_set}")
+            print(f" set apos o sorted: {sorted(numeros_set)}\n")
+            
+            print(f" dict crua: {numeros_dict}")
+            print(f" dict apos o sorted: {sorted(numeros_dict)}\n")
+   
+    # modulo - min e max:
+        Como visto anteriormente sao funcoes que mostram o maior e o menor valor, porem se executados para strings,
+        iram se basear na ordem alfabetica das letras.so e possivel verificar o tamanho da string se baseando em quantidade,
+        caso seja alterado o parametro key= dentro das funcoes max e min.
+        Exemplo:
+            musicas =[
+                {"titulo": "Thunderstruck", "tocou": 3},
+                {"titulo": "senta no bugalu", "tocou": 100},
+                {"titulo": "Pike", "tocou": 2200},
+                {"titulo": "Foto do Corte", "tocou": 10000},
+            ]
+            
+            print(max(musicas, key=lambda musica: musica['tocou'])['titulo'])
+            print(min(musicas, key=lambda musica: musica['tocou'])['titulo'])
+
+    # modulo - Reversed:
+        A funcao reversed() pode ser utilizada para alterar todos os iteraveis, ao contrario da funcao reverse() que 
+        altera apenas a lista. E retorna um iteravel chamado (List reverse Iterator)
+        Podemos utilizalo para imprimir um loop for reverso
+        Exemplo:
+            for n in reversed(range(1, 10)):
+                print(n)
+                
+    # modulo - len, abs, sum e round:
+        A funcao len retorna o tamanho de um iteravel.
+        A funcao abs retorna valor absoluto do numero real ou inteiro.
+        A funcao sum retorna a soma de um iteravel ou de apenas mais de um numero.
+        A funcao round retorna um numero aredondado para o numero inteiro mais proximo da entrada.
+        
+    # modulo - Zip:
+        Cria um iteravel chamado zip object, ele agrega elemento de cada um dos iteraveis passados como entrada em pares
+        Melhor maneira de juntar dus listas e organizalas como chave e valor, considerando a ordem de cada uma delas.
+        Porem so funciona com dicionary, quando o zip possui apenas 2 iteraveis
+        Exemplo (O resultado sera um dicionario, como chave os itens da lista1 e valor os itens da lista2):
+            lista1 = [1, 2, 4]
+            lista2 = [5, 6, 7]
+            zip1 = zip(lista1, lista2)
+            print(dict(zip1))            
 """
 
-nomes = ['Carlos', 'Carla', 'Camila', 'Claudio', 'Vitor']
-print(all([nome[0] == 'V' for nome in nomes]))
-
-print(all(num for num in [2, 4, 6, 8, 10] if num % 2 == 0))
+lista1 = {"1": 1, "2": 2, "3": 5, "4": 1, "5": 3, "6": 9, "7": 10, "8": 6, "9": 8}
+lista2 = {"a": "a", "b": "b", "c": "c", "d": "d", "e": "e", "f": "f", "g": "g", "h": "h", "i": "i"}
+zip1 = zip(lista1, lista2)
+print(dict(zip1))
