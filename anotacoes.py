@@ -431,4 +431,145 @@ Aula 6 - Funcoes em Python:
      
     
 """
+#######################################################################################
+"""
+Aula 7 - Comprehensions em Python - Parte 1:
+    # Modulo - List Comprehensions (Uma das features mais poderosas da linguagem Python):
+        List Comprehensions ->  Com essa feature e possivel gerar novas listas com dados processados a partir de outro iteravel.
+            # Sintax: 
+                [ calculo for dado in iteravel ] 
+            Exemplos: 
+                numeros = [1, 2, 3, 4, 5, 6]
+                res = [numero * 10 for numero in numeros] # Dentro dessa Comprehensions e possivel realizar qualquer tipo de calculo, ou ate mesmo utilizar uma funcao dentro dessa lista
+                print(res)
+                
+                # Resultado no console
+                [10, 20, 30, 40, 50, 60]
+    # modulo - List Aninhadas
+        Em algumas linguagens de programacao possuem uma estrutura de dados chamada de arrays, porem em Python sao chamadas de listas:
+            - Unidimensionais (Array/ Vetores);
+            - Multidimensionais (Matrizes);
+        Exemplos de Listas aninhadas:
+            lista = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+            print(lista[0][0])  # Printando o elemento dentro da lista aninhada (valor a ser exibido sera o 1)
+            print(lista[2][1])  # Printando o elemento dentro da lista aninhada (valor a ser exibido sera o 8)
+            
+        Exemplo de Iterando com loops em uma lista aninhada:
+            for lista in listas:  # Iterando as listas dentro da lista;
+                for num in lista:  # Iterando os numeros dentro das listas que estao dentro da lista;
+                    print(num)
+        Exemplo de Iterando com poops em lista aninhada utilizando list comprehension (O resultado sera o mesmo do exemplo acima):
+            [[print(valor) for valor in lista] for lista in listas]
+        
+        Exemplo para gerar uma lista aninhada com range():
+            tabuleiro = [[numero for numero in range(1, 4)] for valor in range(1, 4)]
+            print(tabuleiro)
+            
+    # modulo - Dictionary Compreension:
+        Dicinary Comprehensions ->  Com essa feature e possivel gerar novas dicts com dados processados a partir de outro iteravel.
+        
+        Exemplo:
+            numeros = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+            quadrado = {chave: valor ** 2 for chave, valor in numeros.items()}
+            print(quadrado)
+            
+        Exemplo para trasnformar qualquer tipo de conjuto de dados em dict utilizando o Compreesion (nesse exemplo utilizei uma lista:) 
+            numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            quadrado = {valor: valor ** 2 for valor in numeros} 
+            print(quadrado)
+            
+        Exemplo para misturar qualquer tipo de conjuto de dados em dict utilizando o Compreesion (nesse caso utilizei uma tupla e uma lista):
+            chaves = 'abcdefghi'
+            valores = [1, 2, 4, 5, 6, 7, 8, 9, 10]
+            mistura = {chaves[i]: valores[i] for i in range(0, len(chaves))}
+            print(mistura)
+            
+        Exemplo utilizando logica condicional:
+            numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            res = {num: ('par' if num % 2 == 0 else 'impar') for num in numeros}
+            print(res)
+            
+            numeros = {x: x ** 2 for x in range(10)}
+            print(numeros)  
+"""
 
+
+"""
+Obs: Para Remover o espaçamento antes e depois da string Caso seja inserido um espaço indevido, e necessário utilizar a função strip().
+Obs: Assim como a funcao map a funcao filter recebe dois parametros
+Obs: Os dados gerados na funcao map ou filter, so podem ser utilizados uma vez.
+
+Aula 8 - Expressões Lambdas e Funções integradas:
+
+    # Modulo - Utilizando Lambda:
+        Lambdas sao funcoes que nao possuem nome, ou funcoes anonimas.
+        
+        Exemplo de uma Funcao em Lambda:
+        func_lambda = lambda x: 3 * x + 1
+        print(func_lambda(5))    
+        
+        Exemplo de funcao lambda com multiplas entradas:
+        
+        Exemplo de LAmbda em uma funcao sort():
+        autores = ["Isaac Asimov", "Ray Bradbury", "Robert Heinlein", "Arthur C. Clarke", "Franl Herbert", "Orson Scott Card",
+           "Douglas Adams", "H. G. Wells", "Leigh Brackett"]
+        autores.sort(key=lambda sobrenome: sobrenome.split(' ')[-1].lower())
+        print(autores)
+
+        Exemplo de lambda em uma funcao quadradita
+        # f(x) = a * x ** 2 + b * x + c
+        # Definindo a funcao Quadratica
+        def quadratica(a, b, c):
+            Retorna a funcao f(x) = a * x ** 2 + b * x + c
+            return lambda x: a * x ** 2 + b * x + c
+        teste = quadratica(3, 6, 9)  # A variavel teste esta recebendo o retorno da funcao lambda, por isso e necessario informar o valor de x dentro do teste
+        print(teste(2))
+        
+    # Modulo - MAP:
+        Com Map podemos mapear valores para funcção. MAP é uma funcao que recebe dois parametros (o primeiro valor e a funcao e o segundo o iteravel)
+        A Funcao Map retorna valores se baseando na funcao criada que retorna valores (menos os valores booleanos)
+        Exemplo:
+            
+            import math
+            def area(r):
+                return math.pi * (r ** 2)         
+            raios = [2, 5, 0.3, 7.1, 10]
+            areas = map(area, raios)
+            print(list(areas))
+            
+    # Modulo - Filter:
+        Utilizado para filtrar dados de uma determinada coleção. sao utilizado dois parametros sendo uma funcao e um iteravel;
+        A funcao filter retorna valores se baseando em resultados booleanos (True ou False)
+        Utilizando Lambda no filter:
+            import statistics as statis
+            dados = [2.3, 5.6, 0.3, 7.1, 5.10, 9.0, -0.12]
+            media = statis.mean(dados)
+            res = filter(lambda x: x > media, dados )
+            print(list(res))
+            
+        Utilizando o map() e o filter() juntos (foi utilizado o for apenas para o print sair mais bonito):
+            nomes = ['Augusto', 'Maria', 'Ana', 'Vanessa', 'Beca']
+            lista = list(map(lambda nome: f'O nome da pessoa e {nome}', filter(lambda nome: len(nome) >= 5, nomes)))
+            for nome in lista:
+                print(f'{nome}, o seu amigo')
+                
+    # Modulo - Reduce (funcao substituida pelo for, que e uma maneira mais clean)
+        Funcao so pode ser utilizada a partir do modulo functools (import functools), para utilizar o reduce e necessario
+        uma funcao que utiliza 2 parametros uma funcao e um iteravel:
+        Exemplo:
+            from functools import reduce
+            dados = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+            multi = lambda x, y: x * y
+            res = reduce(multi, dados)
+            print(res)
+    # Modulo - Any e All:
+        A funcao all() retorna True se todos os elementos do iteravel sâo verdadeiros ou ainda se o iteravel estiver vazio.
+        Exemplo :
+            print(all(num for num in [2, 4, 6, 8, 10] if num % 2 == 0)) #resultado sera True devido aos resultados serem Par
+            print(all(num for num in [2, 4, 6, 8, 10] if num % 2 == 1)) #resultado sera True devido aos resultados serem Impar e gerar uma lista vazia
+"""
+
+nomes = ['Carlos', 'Carla', 'Camila', 'Claudio', 'Vitor']
+print(all([nome[0] == 'V' for nome in nomes]))
+
+print(all(num for num in [2, 4, 6, 8, 10] if num % 2 == 0))
