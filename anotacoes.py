@@ -662,8 +662,124 @@ Aula 8 - Expressões Lambdas e Funções integradas:
             zip1 = zip(lista1, lista2)
             print(dict(zip1))            
 """
+#######################################################################################
+"""
+Obs: Sempre procure tratar um erro de forma específica.
 
-lista1 = {"1": 1, "2": 2, "3": 5, "4": 1, "5": 3, "6": 9, "7": 10, "8": 6, "9": 8}
-lista2 = {"a": "a", "b": "b", "c": "c", "d": "d", "e": "e", "f": "f", "g": "g", "h": "h", "i": "i"}
-zip1 = zip(lista1, lista2)
-print(dict(zip1))
+Aula 9 - Debugando e Tratando erros:
+
+    # Modulo - Erros mais comuns em Python:
+        SyntaxError -> Ocorre quando o Python encontra um erro de sintaxe, ou seja, voce escreveu algo que o Python nao 
+        reconhece como parte da linguagem;
+        
+        NameError -> Ocorre quando uma variavel ou funcao utilizada nao foi definida, ou estiver com o nome errado;
+        
+        TypeError -> Ocorre quando uma funcao, operacao ou acao e aplicada a um tipo errado de dados;
+        
+        IndexError -> Ocorre quando tentamos acessar um elemento em um tipo de dado indexado utilizando um index invalido;
+        
+        ValueError -> Ocorre quando uma funcao ou funcao integrada recebe um argumento com tipo correto, mas com o valor inapropriado;
+        
+        KeyError -> Ocorre quando queremos acessar um dicionario com uma chave q nao existe;
+        
+        AtributeError -> Ocorre quando uma variavel nao te um atributo ou funcao;
+        
+        IdentantionError -> Ocorre quando nao respeitamos a indentacao do Python de 4 espacos;
+        
+    # Modulo -  Levantando os proprio erros com raise:
+        Raise lanca excecoes em uma funcao criada em nosso codigo. O raise funciona como o return, pois nada apos dele
+        e executado.
+        Exemplo de utilizacao do raise;
+            raise TipoDoErro('Mensagem do erro')
+        
+        Exemplo Real:
+        def colore(texto, cor):
+            if type(texto) is not str:
+                raise TypeError('Texto precisa ser uma string')
+            if type(cor) is not str:
+                raise TypeError('Cor precisa ser uma string')
+            print(f"O texto '{texto}', sera impresso na cor {cor}")
+        
+        colore("AUgusto", "Azul")
+        
+    # Modulo - O bloco Try/Except:
+        o bloco Try/Except utilizamos para tratar erros que podem ocorrer no nosso codigo. Previnindo que o programa pare de funcionar
+        Devemo sempre tratar o erro de forma especifica, informando o tipo do erro junto do except. E possivel inserir
+        diversos except no bloco para tratar mais de um tipo de erro.
+        Exemplo mais simples:
+            try:
+                execucao problematica
+            except:
+                O que deve ser feito para corrigir o problema
+        
+        Exemplo 1 - tratando um erro generico
+        try:
+            geek()
+        except:
+            print('Ocorreu um erro aqui') 
+             
+        Exemplo 2 - tratando um erro especifica
+        try:
+            len(2)
+        except TypeError as err: # Dando um apelido para o tipo do erro para que ele seja informado no log sem gerar erro no programa
+            print(f'Ocorreu um erro aqui{err}')    
+    
+    # Modulo - Try / Except / Else / Finally:
+        Devemos tratar os erros em todas as entradas de dados.
+        Else -> E executado somente se nao ocorrer o erro
+            Exemplo:
+                try:
+                    num = int(input("Informe um numero: "))
+                except ValueError:
+                    print('valor incorreto')
+                else:
+                    print(f"Seu numero foi {num}")
+        
+        Finally -> E sempre executado independente se o erro e gerado ou nao. Geralmente e utilizado para fechar ou 
+        desalocar recursos:
+            Exemplo:
+                try:
+                    num = int(input("Informe um numero: "))
+                except ValueError:
+                    print('valor incorreto')
+                else:
+                    print(f"Seu numero foi {num}")
+                finally:
+                    print("Finally passou por aqui")
+        
+        Exemplo Mais completo:
+        def dividri(a, b):
+            return a / b
+        
+        try:
+            num1 = int(input("Informe um numero: "))
+            num2 = int(input("Informe outro numero: "))
+        
+        except ValueError:
+            print("O valor informado precisa ser um numero")
+        
+        else:
+            print(dividri(num1, num2))
+            
+    # Modulo - Debugando codigo com PDB (Python Debug):
+        Para Utilizar o PDB e necessario importar a biblioteca
+        
+
+"""
+
+from pdb import set_trace
+
+
+
+def dividri(a, b):
+    return a / b
+
+try:
+    num1 = int(input("Informe um numero: "))
+    num2 = int(input("Informe outro numero: "))
+
+except ValueError:
+    print("O valor informado precisa ser um numero")
+
+else:
+    print(dividri(65, 3))
